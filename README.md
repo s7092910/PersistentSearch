@@ -29,9 +29,14 @@ repositories {
 Add a dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'com.wanderingcan.widget:persistentsearch:1.0.0'
+    compile 'com.wanderingcan.widget:persistentsearch:1.0.1'
 }
 ```
+
+##Change Log
+**1.0.1**
+  * Added missing methods for setting if the hint should be shown at all times in the `PersistentSearchView`
+  * Changed `SearchMenuItem` order to be mutable instead of having it mutable
 
 ##Usage
 ###Persistent Search View
@@ -65,7 +70,10 @@ items in the search menu. If set to false it will never show the menu even if th
 
 **Java**
 
-Inside the activity, there are a few listeners that will have to be set for the `PersistentSearchView` to be useful.
+Inside the activity, there are a few listeners that will have to be set for the `PersistentSearchView` to be useful. And each
+xml attribute has a corresponding method to set the value in java code. To open or close the search in code can be done by 
+calling `persistentSearchView.openSearch()` and `persistentSearchView.closeSearch()`, respectively.
+
 ```JAVA
 persistentSearchView.setOnSearchListener(new PersistentSearchView.OnSearchListener() {
             @Override
@@ -102,6 +110,40 @@ persistentSearchView.setOnSearchListener(new PersistentSearchView.OnSearchListen
             }
         });
 ```
+
+To handle on click events for the icons on the searchbar, there is the an OnIconClickListener
+```Java
+persistentSearchView.setOnIconClickListener(new PersistentSearchView.OnIconClickListener() {
+            @Override
+            public void OnNavigationIconClick() {
+                //Called when the Left/Navigation Icon is clicked
+            }
+
+            @Override
+            public void OnEndIconClick() {
+                //Called when the End Icon is clicked
+            }
+        });
+```
+
+The SearchMenu also has an OnMenuItemClickListener
+```Java
+persistentSearchView.setOnMenuItemClickListener(new PersistentSearchView.OnMenuItemClickListener() {
+            @Override
+            public void onMenuItemClick(SearchMenuItem item) {
+            //Called when an Item in the SearchMenu is clicked, it passes in the 
+            //SearchMenuItem that was clicked
+            }
+        });
+```
+
+### SearchMenu
+The SearchMenu is built to behave close to the built in menu objects in Android. To get access to the SearchMenu by calling
+`persistentSearchView.getSearchMenu()`. To add an item `searchMenu.addSearchMenuItem()` is used. If there are 5 items already
+inside the menu, calling `searchMenu.addSearchMenuItem()` will return `null`. Otherwise a `SearchMenuItem` is returned.
+
+The SearchMenuItem allows you to set the Left Icon with `setIcon()` and the Right Icon with `setActionIcon()`. Setting the 
+text is done by `setTitle()`. The SearchMenu also allows you to remove items and clear all items.
 
 ##Caveats
 Much of this has been made to be highly customizable, so there is very little hand holding. But it has been made 
