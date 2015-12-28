@@ -278,6 +278,27 @@ public class PersistentSearchView extends CardView{
     }
 
     /**
+     * Sets if the hint is always active if there is no text in the Search bar
+     * @param isAlwaysVisible True if the hint is to be always active, false otherwise
+     */
+    public void setHintIsAlwaysVisible(boolean isAlwaysVisible){
+        mHintAlwaysVisible = isAlwaysVisible;
+        if(mHintAlwaysVisible){
+            mSearchText.setHint(mHint);
+        }else{
+            mSearchText.setHint(EMPTY);
+        }
+    }
+
+    /**
+     * Gets if the hint is always active if there is no text in the Search bar
+     * @return True if the hint is always active, false otherwise
+     */
+    public boolean isHintAlwaysVisible(){
+        return mHintAlwaysVisible;
+    }
+
+    /**
      * Sets if the SearchMenu should be shown or not, even if there are SearchMenuItems to be shown
      * @param showMenu True if the SearchMenu should be shown, false otherwise
      */
