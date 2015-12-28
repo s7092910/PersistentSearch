@@ -34,8 +34,74 @@ dependencies {
 ```
 
 ##Usage
-### Persistent Search View
+###Persistent Search View
+The `PersistentSearchView` has been created to be easy to use and highly customizable. But due to the customizability, it doesn't do much hand holding when it comes to drawables.
 
+**XML**
+
+Here is an example of **PersistentSearchView**'s xml attributes:
+```XML
+    <com.wanderingcan.persistentsearch.PersistentSearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_bar"
+        app:navSrc="@drawable/someDrawable"
+        app:endSrc="@drawable/someOtherDrawable"
+        app:hint="Enter some text to search"
+        app:hintAlwaysActive="true"
+        app:showMenu="true/>
+```
+
+You can set the icons for both of the main icons on the `PersistentSearchView` in the xml by using the `app:navSrc` xml
+attribute for the left icon. And for the right icon by using the `app:endSrc` xml attribute.
+
+The `app:hint` attribute allows a text hint to be added to the `PersistentSearchView`. The `app:hintAlwaysActive` allows the
+hint to be active when the user does not have the searchbar active or to only show it when there is no text in the searchbar
+and the user has the searchbar active.
+
+The `app:showMenu` determines if the `PersistentSearchView` should show the menu below the searchbar when active if there are
+items in the search menu. If set to false it will never show the menu even if there are items in the menu.
+
+
+**Java**
+
+Inside the activity, there are a few listeners that will have to be set for the `PersistentSearchView` to be useful.
+```JAVA
+persistentSearchView.setOnSearchListener(new PersistentSearchView.OnSearchListener() {
+            @Override
+            public void onSearchOpened() {
+                //Called when the Searchbar is opened by the user or by something calling
+                //persistentSearchView.openSearch();
+            }
+
+            @Override
+            public void onSearchClosed() {
+                //Called when the searchbar is closed by the user or by something calling
+                //persistentSearchView.closeSearch();
+            }
+
+            @Override
+            public void onSearchCleared() {
+                //Called when the searchbar has been cleared by the user by removing all 
+                //the text or hitting the clear button. This also will be called if 
+                //persistentSearchView.populateSearchText() is set with a null string or
+                //an empty string
+            }
+
+            @Override
+            public void onSearchTermChanged(CharSequence term) {
+                //Called when the text in the searchbar has been changed by the user or 
+                //by persistentSearchView.populateSearchText() with text passed in.
+                //Best spot to handle giving suggestions to the user in the menu
+            }
+
+            @Override
+            public void onSearch(CharSequence text) {
+                //Called when the user hits the IME Action Search on the keyboard to search
+                //Here is the best spot to handle searches
+            }
+        });
+```
 
 ##Caveats
 Much of this has been made to be highly customizable, so there is very little hand holding. But it has been made 
