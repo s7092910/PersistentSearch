@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             }
         });
-
         searchView.setOnIconClickListener(new PersistentSearchView.OnIconClickListener() {
             @Override
             public void OnNavigationIconClick() {

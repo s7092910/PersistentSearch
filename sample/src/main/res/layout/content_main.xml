@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/search_bar"
         app:hint="Enter some text to search"
         app:hintAlwaysActive="true"/>
