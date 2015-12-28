@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PersistentSearchView">
+        <attr name="navSrc" format="reference|color"/>
+        <attr name="endSrc" format="reference|color"/>
+        <attr name="hint" format="reference|string"/>
+        <attr name="hintAlwaysActive" format="boolean"/>
+        <attr name="showMenu" format="boolean"/>
+    </declare-styleable>
+</resources>

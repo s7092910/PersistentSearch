@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/content_display_icon"
+        android:layout_gravity="center_vertical|start"
+        android:layout_margin="@dimen/image_side_margin"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/content_title"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/text_margin_menu"
+        android:layout_marginRight="@dimen/text_margin_menu"
+        android:layout_marginStart="@dimen/text_margin_menu"
+        android:layout_marginEnd="@dimen/text_margin_menu"
+        android:maxLines="2"
+        android:textColor="@android:color/black"
+        tools:text="This is a sample text that is going into this little spot"/>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/content_action_icon"
+        android:layout_gravity="center_vertical|end"
+        android:layout_margin="@dimen/image_side_margin"
+        android:scaleType="fitCenter" />
+</FrameLayout>
