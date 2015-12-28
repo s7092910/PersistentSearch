@@ -16,15 +16,7 @@ highly customizable
 ![Filled in with some text](https://github.com/s7092910/PersistentSearch/blob/master/images/Filled.png)
 
 ##Include in your project
-Currently the project is waiting for approval to be added to jcenter. So in the mean time you will have to add the following to
-your `build.gradle`:
-```
-repositories {
-    maven {
-        url 'https://dl.bintray.com/s7092910/maven/'
-    }
-}
-```
+It is hosted on Jcenter, so it is easy to add to your android project. Just follow the step below.
 
 Add a dependency to your `build.gradle`:
 ```
