@@ -10,6 +10,11 @@ highly customizable
 * Search Menu Items are customizable with 2 icons and a title
 * Option to turn off the Search Menu
 
+##Examples
+![Hint Only](https://github.com/s7092910/PersistentSearch/blob/master/images/Hint.png)
+![With the Menu Shown](https://github.com/s7092910/PersistentSearch/blob/master/images/Menu.png)
+![Filled in with some text](https://github.com/s7092910/PersistentSearch/blob/master/images/Filled.png)
+
 ##Include in your project
 Currently the project is waiting for approval to be added to jcenter. So in the mean time you will have to add the following to
 your `build.gradle`:
