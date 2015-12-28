@@ -33,8 +33,8 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
     /** Used for the icon resource ID if this item does not have an icon */
     public static final int NO_ICON = 0;
 
-    private final int mOrdering;
     private final int mId;
+    private int mOrdering;
 
     private Drawable mIconDrawable;
     private int mIconResId = NO_ICON;
@@ -50,20 +50,19 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
     private SearchMenuItem(){
         //Private Constructor
         mId = 0;
-        mOrdering = 0;
     }
 
     /**
      * Constructor for SearchMenuItem
      * @param presenter The Presenter for the SearchMenu
      * @param id The Id for SearchMenuItem
-     * @param ordering The Ordering for the SearchMenu
+     * @param order The Ordering for the SearchMenu
      * @param title The Title to show for the Item
      */
-    SearchMenuItem(SearchMenuPresenter presenter, int id, int ordering, String title){
+    SearchMenuItem(SearchMenuPresenter presenter, int id, int order, String title){
         mMenu = presenter;
         mId = id;
-        mOrdering = ordering;
+        mOrdering = order;
         mTitle = title;
         mActionDrawable = ContextCompat.getDrawable(mMenu.getContext(), R.drawable.ic_action_arrow);
         mDefaultAction = true;
@@ -87,10 +86,18 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
 
     /**
      * Gets the Order to display the SearchMenuItem in the SearchMenu
-     * @return The Order to display the items in the menu
+     * @return The Order to display the item in the menu
      */
     public int getOrdering(){
         return mOrdering;
+    }
+
+    /**
+     * Sets the Order to display the SearchMenuItem in the SearchMenu
+     * @param order The order to display the item in the menu
+     */
+    public void setOrdering(int order){
+        mOrdering = order;
     }
 
     /**
