@@ -21,11 +21,15 @@ It is hosted on Jcenter, so it is easy to add to your android project. Just foll
 Add a dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'com.wanderingcan.widget:persistentsearch:1.0.1'
+    compile 'com.wanderingcan.widget:persistentsearch:1.1.0'
 }
 ```
 
 ##Change Log
+**1.1.0**
+  * Added a DrawerArrowDrawable to allow easy use of a drawable that animates between "Drawer hamburger" menu or an arrow
+  * Added new samples to show how to use the DrawerArrowDrawable (`DrawerActivity`)
+  * Added Voice Recognition to the main sample (`SearchActivity`)
 **1.0.1**
   * Added missing methods for setting if the hint should be shown at all times in the `PersistentSearchView`
   * Changed `SearchMenuItem` order to be mutable instead of having it mutable
