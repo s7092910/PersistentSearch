@@ -24,8 +24,6 @@ import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.TintManager;
 
-import com.wanderingcan.widget.R;
-
 /**
  * A Class that holds the Title and Icons for the SearchMenu that is part of the PresistentSearchView
  */

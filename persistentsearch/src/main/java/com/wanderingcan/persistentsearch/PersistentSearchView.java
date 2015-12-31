@@ -40,8 +40,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.wanderingcan.widget.R;
-
 /**
  * A Persistent Search Bar that uses Material Design, very much like the Search Bar in the Google Now App
  * and the Google Play Store.

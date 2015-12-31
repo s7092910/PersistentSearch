@@ -24,8 +24,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.wanderingcan.widget.R;
-
 /**
  * The class that is responsible for presenting the SearchMenu
  */
