@@ -21,11 +21,15 @@ It is hosted on Jcenter, so it is easy to add to your android project. Just foll
 Add a dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'com.wanderingcan.widget:persistentsearch:1.2.0'
+    compile 'com.wanderingcan.widget:persistentsearch:1.2.2'
 }
 ```
 
 ## Change Log
+**1.2.2**
+  * Fixed layout issue when increasing the card elevation
+  * Fixed layout issue for the text inside the search bar
+
 **1.2.0**
   * Added Drawable Tinting to `SearchMenuItem`
   * Updated Support Library to `25.1.0`

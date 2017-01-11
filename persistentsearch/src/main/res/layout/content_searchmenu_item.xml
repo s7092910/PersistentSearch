@@ -10,7 +10,7 @@
         android:layout_height="24dp"
         android:id="@+id/content_display_icon"
         android:layout_gravity="center_vertical|start"
-        android:layout_margin="@dimen/image_side_margin"
+        android:layout_margin="@dimen/persistent_search_view_image_side_margin"
         android:scaleType="fitCenter" />
 
     <TextView
@@ -18,10 +18,10 @@
         android:layout_height="match_parent"
         android:id="@+id/content_title"
         android:gravity="center_vertical"
-        android:layout_marginLeft="@dimen/text_margin_menu"
-        android:layout_marginRight="@dimen/text_margin_menu"
-        android:layout_marginStart="@dimen/text_margin_menu"
-        android:layout_marginEnd="@dimen/text_margin_menu"
+        android:layout_marginLeft="@dimen/persistent_search_view_text_margin_menu"
+        android:layout_marginRight="@dimen/persistent_search_view_text_margin_menu"
+        android:layout_marginStart="@dimen/persistent_search_view_text_margin_menu"
+        android:layout_marginEnd="@dimen/persistent_search_view_text_margin_menu"
         android:maxLines="2"
         android:textColor="@android:color/black"
         tools:text="This is a sample text that is going into this little spot"/>
@@ -31,6 +31,6 @@
         android:layout_height="24dp"
         android:id="@+id/content_action_icon"
         android:layout_gravity="center_vertical|end"
-        android:layout_margin="@dimen/image_side_margin"
+        android:layout_margin="@dimen/persistent_search_view_image_side_margin"
         android:scaleType="fitCenter" />
 </FrameLayout>

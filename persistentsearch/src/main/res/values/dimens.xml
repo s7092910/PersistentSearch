@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="min_height">55.5dp</dimen>
-    <dimen name="image_dimen">48dp</dimen>
-    <dimen name="image_top_margin">12dp</dimen>
-    <dimen name="image_side_margin">16dp</dimen>
-    <dimen name="text_margin">60dp</dimen>
-    <dimen name="text_margin_menu">65dp</dimen>
+    <dimen name="persistent_search_view_min_height">55.5dp</dimen>
+    <dimen name="persistent_search_view_image_dimen">48dp</dimen>
+    <dimen name="persistent_search_view_image_top_margin">12dp</dimen>
+    <dimen name="persistent_search_view_image_side_margin">16dp</dimen>
+    <dimen name="persistent_search_view_text_margin">60dp</dimen>
+    <dimen name="persistent_search_view_text_margin_menu">65dp</dimen>
 </resources>

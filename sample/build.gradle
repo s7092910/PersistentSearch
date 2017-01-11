@@ -8,8 +8,8 @@ android {
         applicationId "com.wanderingcan.persistentsearch.sample"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 3
-        versionName "1.1.0"
+        versionCode 5
+        versionName "1.2.2"
     }
     buildTypes {
         release {

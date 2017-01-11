@@ -17,25 +17,22 @@
 package com.wanderingcan.persistentsearch;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v4.text.TextUtilsCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -183,9 +180,9 @@ public class PersistentSearchView extends CardView{
         a.recycle();
 
         Resources res = context.getResources();
-        int imageDimen = res.getDimensionPixelSize(R.dimen.image_dimen);
-        mImageMargin = res.getDimensionPixelSize(R.dimen.image_side_margin);
-        int imageTopMargin = res.getDimensionPixelSize(R.dimen.image_top_margin);
+        int imageDimen = res.getDimensionPixelSize(R.dimen.persistent_search_view_image_dimen);
+        mImageMargin = res.getDimensionPixelSize(R.dimen.persistent_search_view_image_side_margin);
+        int imageTopMargin = res.getDimensionPixelSize(R.dimen.persistent_search_view_image_top_margin);
 
         //Sets all of the locations of the views
         CardView.LayoutParams lpNav = generateDefaultLayoutParams();
@@ -207,14 +204,14 @@ public class PersistentSearchView extends CardView{
         CardView.LayoutParams lpText = generateDefaultLayoutParams();
         lpText.gravity = Gravity.TOP;
         lpText.height = lpNav.topMargin + lpNav.height;
-        mTextMargin = res.getDimensionPixelSize(R.dimen.text_margin);
+        mTextMargin = res.getDimensionPixelSize(R.dimen.persistent_search_view_text_margin);
         if(Build.VERSION.SDK_INT >= 17) {
             lpText.setMarginStart(mTextMargin);
             lpText.setMarginEnd(mTextMargin);
-        }else {
+        } else {
             lpText.leftMargin = lpText.rightMargin = mTextMargin;
         }
-        setupSearchTextMargin(lpText);
+        lpText = setupSearchTextMargin(lpText);
 
         CardView.LayoutParams lpMenu = generateDefaultLayoutParams();
         lpMenu.topMargin = lpNav.topMargin + lpNav.height;
@@ -236,12 +233,12 @@ public class PersistentSearchView extends CardView{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        int minHeight = getResources().getDimensionPixelSize(R.dimen.min_height);
-        if(mShowMenu && isSearchOpen()){
-            heightMode = MeasureSpec.UNSPECIFIED;
-        }
-        heightMeasureSpec = MeasureSpec.makeMeasureSpec(minHeight, heightMode);
+//        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int minHeight = getResources().getDimensionPixelSize(R.dimen.persistent_search_view_min_height);
+//        if(mShowMenu && isSearchOpen()){
+//            heightMode = MeasureSpec.UNSPECIFIED;
+//        }
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(minHeight, MeasureSpec.UNSPECIFIED);
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
@@ -464,6 +461,7 @@ public class PersistentSearchView extends CardView{
     }
 
     private LayoutParams setupSearchTextMargin(LayoutParams lp){
+        Log.d(TAG, "setupSearchTextMargin() called with: lp = [" + lp + "]");
         if(Build.VERSION.SDK_INT >= 17) {
             if (mNavIcon.getVisibility() == VISIBLE) {
                 lp.setMarginStart(mTextMargin);
