@@ -17,33 +17,37 @@
 package com.wanderingcan.persistentsearch;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.TintManager;
+import android.support.v4.graphics.drawable.DrawableCompat;
 
 /**
  * A Class that holds the Title and Icons for the SearchMenu that is part of the PresistentSearchView
  */
 public class SearchMenuItem implements Comparable<SearchMenuItem>{
-    /** Used for the icon resource ID if this item does not have an icon */
-    public static final int NO_ICON = 0;
 
     private final int mId;
     private int mOrdering;
 
     private Drawable mIconDrawable;
-    private int mIconResId = NO_ICON;
 
     private String mTitle;
 
     private Drawable mActionDrawable;
-    private int mActionResId = NO_ICON;
     private boolean mDefaultAction;
 
     private SearchMenuPresenter mMenu;
+    private ColorStateList mIconTint;
+    private ColorStateList mActionTint;
+    private Mode mIconTintMode;
+    private Mode mActionTintMode;
 
     private SearchMenuItem(){
         //Private Constructor
@@ -62,7 +66,7 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
         mId = id;
         mOrdering = order;
         mTitle = title;
-        mActionDrawable = ContextCompat.getDrawable(mMenu.getContext(), R.drawable.ic_action_arrow);
+        setActionIcon(R.drawable.ic_action_arrow);
         mDefaultAction = true;
     }
 
@@ -113,8 +117,7 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
     public SearchMenuItem setTitle(String title){
         title = title.trim();
         mTitle = title;
-        int index = mMenu.getMenu().getItems().indexOf(this);
-        mMenu.getAdapter().notifyItemChanged(index);
+        notifyItemChanged();
         return this;
     }
 
@@ -133,18 +136,7 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
      * @return Drawable for the action icon
      */
     public Drawable getActionIcon() {
-        if (mActionDrawable != null) {
-            return mActionDrawable;
-        }
-
-        if (mActionResId != NO_ICON) {
-            Drawable icon = TintManager.getDrawable(mMenu.getContext(), mActionResId);
-            mActionResId = NO_ICON;
-            mActionDrawable = icon;
-            return icon;
-        }
-
-        return null;
+        return mActionDrawable;
     }
 
     /**
@@ -153,10 +145,14 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
      */
     public SearchMenuItem setActionIcon(Drawable icon) {
         mDefaultAction = false;
-        mActionResId = NO_ICON;
-        mActionDrawable = icon;
-        int index = mMenu.getMenu().getItems().indexOf(this);
-        mMenu.getAdapter().notifyItemChanged(index);
+        mActionDrawable = DrawableCompat.wrap(icon);
+        if(mActionTint != null){
+            DrawableCompat.setTintList(mActionDrawable, mActionTint);
+        }
+        if(mActionTintMode != null){
+            DrawableCompat.setTintMode(mActionDrawable, mActionTintMode);
+        }
+        notifyItemChanged();
         return this;
     }
 
@@ -165,12 +161,7 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
      * @param iconResId The resourceId for the action icon
      */
     public SearchMenuItem setActionIcon(@DrawableRes int iconResId) {
-        mDefaultAction = false;
-        mActionDrawable = null;
-        mActionResId = iconResId;
-        int index = mMenu.getMenu().getItems().indexOf(this);
-        mMenu.getAdapter().notifyItemChanged(index);
-        return this;
+        return setActionIcon(ContextCompat.getDrawable(mMenu.getContext(), iconResId));
     }
 
     /**
@@ -178,18 +169,7 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
      * @return Drawable for the icon
      */
     public Drawable getIcon() {
-        if (mIconDrawable != null) {
-            return mIconDrawable;
-        }
-
-        if (mIconResId != NO_ICON) {
-            Drawable icon = TintManager.getDrawable(mMenu.getContext(), mIconResId);
-            mIconResId = NO_ICON;
-            mIconDrawable = icon;
-            return icon;
-        }
-
-        return null;
+        return mIconDrawable;
     }
 
     /**
@@ -197,10 +177,14 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
      * @param icon The drawable for the icon
      */
     public SearchMenuItem setIcon(Drawable icon) {
-        mIconResId = NO_ICON;
-        mIconDrawable = icon;
-        int index = mMenu.getMenu().getItems().indexOf(this);
-        mMenu.getAdapter().notifyItemChanged(index);
+        mIconDrawable = DrawableCompat.wrap(icon);
+        if(mIconTint != null){
+            DrawableCompat.setTintList(mIconDrawable, mIconTint);
+        }
+        if(mIconTintMode != null){
+            DrawableCompat.setTintMode(mIconDrawable, mIconTintMode);
+        }
+        notifyItemChanged();
         return this;
     }
 
@@ -209,11 +193,40 @@ public class SearchMenuItem implements Comparable<SearchMenuItem>{
      * @param iconResId The resourceId for the icon
      */
     public SearchMenuItem setIcon(@DrawableRes int iconResId) {
-        mIconDrawable = null;
-        mIconResId = iconResId;
-        int index = mMenu.getMenu().getItems().indexOf(this);
-        mMenu.getAdapter().notifyItemChanged(index);
+        return setIcon(ContextCompat.getDrawable(mMenu.getContext(), iconResId));
+    }
+
+    public SearchMenuItem setIconTintList(@Nullable ColorStateList tint){
+        mIconTint = tint;
+        DrawableCompat.setTintList(mIconDrawable, tint);
+        notifyItemChanged();
         return this;
+    }
+
+    public SearchMenuItem setActionIconTint(@Nullable ColorStateList tint){
+        mActionTint = tint;
+        DrawableCompat.setTintList(mActionDrawable, tint);
+        notifyItemChanged();
+        return this;
+    }
+
+    public SearchMenuItem setIconTintMode(@Nullable Mode mode){
+        mIconTintMode = mode;
+        DrawableCompat.setTintMode(mIconDrawable, mode);
+        notifyItemChanged();
+        return this;
+    }
+
+    public SearchMenuItem setActionIconTintMode(@Nullable Mode mode){
+        mActionTintMode = mode;
+        DrawableCompat.setTintMode(mActionDrawable, mode);
+        notifyItemChanged();
+        return this;
+    }
+
+    private void notifyItemChanged() {
+        int index = mMenu.getMenu().getItems().indexOf(this);
+        mMenu.mAdapter.notifyItemChanged(index);
     }
 
     @Override

@@ -2,7 +2,7 @@
 An Android Persistent Search Bar like the one in Google Now and the Google Play Store. It follows Google's Material Design while
 highly customizable
 
-##Features
+## Features
 * `PersistentSearchView` that is the Persistent Search Bar
 * Support for LTR and RTL layouts
 * Support for custom drawables in all image locations
@@ -10,32 +10,37 @@ highly customizable
 * Search Menu Items are customizable with 2 icons and a title
 * Option to turn off the Search Menu
 
-##Examples
+## Examples
 ![Hint Only](https://github.com/s7092910/PersistentSearch/blob/master/images/Hint.png)
 ![With the Menu Shown](https://github.com/s7092910/PersistentSearch/blob/master/images/Menu.png)
 ![Filled in with some text](https://github.com/s7092910/PersistentSearch/blob/master/images/Filled.png)
 
-##Include in your project
+## Include in your project
 It is hosted on Jcenter, so it is easy to add to your android project. Just follow the step below.
 
 Add a dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'com.wanderingcan.widget:persistentsearch:1.1.0'
+    compile 'com.wanderingcan.widget:persistentsearch:1.2.0'
 }
 ```
 
-##Change Log
+## Change Log
+**1.2.0**
+  * Added Drawable Tinting to `SearchMenuItem`
+  * Updated Support Library to `25.1.0`
+
 **1.1.0**
   * Added a DrawerArrowDrawable to allow easy use of a drawable that animates between "Drawer hamburger" menu or an arrow
   * Added new samples to show how to use the DrawerArrowDrawable (`DrawerActivity`)
   * Added Voice Recognition to the main sample (`SearchActivity`)
+
 **1.0.1**
   * Added missing methods for setting if the hint should be shown at all times in the `PersistentSearchView`
   * Changed `SearchMenuItem` order to be mutable instead of having it mutable
 
-##Usage
-###Persistent Search View
+## Usage
+### Persistent Search View
 The `PersistentSearchView` has been created to be easy to use and highly customizable. But due to the customizability, it doesn't do much hand holding when it comes to drawables.
 
 **XML**
@@ -141,13 +146,13 @@ inside the menu, calling `searchMenu.addSearchMenuItem()` will return `null`. Ot
 The SearchMenuItem allows you to set the Left Icon with `setIcon()` and the Right Icon with `setActionIcon()`. Setting the 
 text is done by `setTitle()`. The SearchMenu also allows you to remove items and clear all items.
 
-##Caveats
+## Caveats
 Much of this has been made to be highly customizable, so there is very little hand holding. But it has been made 
 as easy as possible to use. In the future some things might be automatically handled by the library but only if it is found useful and highly requested (or if I feel like it).
 
 This library is `minSdkVersion=14` and if that changes, the version number will be increased, not decreased.
 
-##License
+## License
 
 
     Copyright 2015 Christopher Beda

@@ -36,7 +36,7 @@ class SearchMenuView extends RecyclerView {
 
     public SearchMenuView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setLayoutManager(new NestedLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         setItemAnimator(null);
     }
 }

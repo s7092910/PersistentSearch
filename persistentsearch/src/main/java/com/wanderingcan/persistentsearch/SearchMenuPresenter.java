@@ -30,9 +30,12 @@ import android.widget.TextView;
 class SearchMenuPresenter {
 
     private Context mContext;
-    private SearchMenu mMenu;
-    private SearchMenuAdapter mAdapter;
-    private SearchMenuItemListener mListener;
+    private final SearchMenu mMenu;
+    private final SearchMenuItemListener mListener;
+    /**
+     * The SearchMenuPresenter's Adapter
+     */
+    final SearchMenuAdapter mAdapter;
 
     public SearchMenuPresenter(Context context, SearchMenuItemListener listener){
         mContext = context;
@@ -53,6 +56,7 @@ class SearchMenuPresenter {
      * Gets the SearchMenuPresenter's Adapter
      * @return The RecyclerView Adapter attached to the SearchMenuPresenter
      */
+    @Deprecated
     public SearchMenuAdapter getAdapter(){
         return mAdapter;
     }

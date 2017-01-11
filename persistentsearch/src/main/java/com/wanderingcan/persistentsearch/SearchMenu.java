@@ -100,7 +100,7 @@ public class SearchMenu {
             mItems.add(item);
             Collections.sort(mItems);
             int index = mItems.indexOf(item);
-            mPresenter.getAdapter().notifyItemInserted(index);
+            mPresenter.mAdapter.notifyItemInserted(index);
             return item;
         }
         return null;
@@ -143,7 +143,7 @@ public class SearchMenu {
         int index = mItems.indexOf(item);
         if(index != -1){
             mItems.remove(item);
-            mPresenter.getAdapter().notifyItemRemoved(index);
+            mPresenter.mAdapter.notifyItemRemoved(index);
             return true;
         }
         return false;
@@ -154,6 +154,6 @@ public class SearchMenu {
      */
     public void clearItems(){
         mItems.clear();
-        mPresenter.getAdapter().notifyDataSetChanged();
+        mPresenter.mAdapter.notifyDataSetChanged();
     }
 }

@@ -17,15 +17,21 @@
 package com.wanderingcan.persistentsearch;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.text.TextUtilsCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -101,7 +107,7 @@ public class PersistentSearchView extends CardView{
 
         mPresenter = new SearchMenuPresenter(context, new SearchMenuListener());
 
-        mSearchMenuView.setAdapter(mPresenter.getAdapter());
+        mSearchMenuView.setAdapter(mPresenter.mAdapter);
         mSearchMenuView.addItemDecoration(new DividerItemDecoration(context, attrs));
 
         int[] attr = { android.R.attr.listDivider };
@@ -212,6 +218,7 @@ public class PersistentSearchView extends CardView{
 
         CardView.LayoutParams lpMenu = generateDefaultLayoutParams();
         lpMenu.topMargin = lpNav.topMargin + lpNav.height;
+        lpMenu.height = RecyclerView.LayoutParams.WRAP_CONTENT;
 
         CardView.LayoutParams lpDivider = generateDefaultLayoutParams();
         if (divider != null) {
@@ -391,6 +398,9 @@ public class PersistentSearchView extends CardView{
                 mSearchText.requestLayout();
             }
         }
+        if (drawable != null) {
+            drawable = DrawableCompat.wrap(drawable);
+        }
         mNavIcon.setImageDrawable(drawable);
     }
 
@@ -424,6 +434,7 @@ public class PersistentSearchView extends CardView{
         }else{
             mEndDrawable = drawable;
         }
+        mEndDrawable = DrawableCompat.wrap(mEndDrawable);
         if(!mShowClearDrawable) {
             mEndIcon.setImageDrawable(mEndDrawable);
         }
